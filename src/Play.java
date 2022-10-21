@@ -1,6 +1,5 @@
 import DataClasses.CurrentBall;
-import DataClasses.FirstInningScore;
-import DataClasses.Player;
+import DataClasses.TeamOneScore;
 import Lists.Commentary;
 import Lists.PlayersList;
 
@@ -10,31 +9,35 @@ public class Play {
 
     RandomRunGenerator randomRunGenerator = new RandomRunGenerator();
     Commentary commentary = new Commentary();
-    CurrentBall currentBall;
-    FirstInningScore firstInningScore;
     PlayersList playersList = new PlayersList();
-    Player player;
+    CalculateOvers calculateOvers = new CalculateOvers();
+
+    //Data Class Objects
+    CurrentBall currentBall;
+    TeamOneScore teamOneScore;
+
 
     void play(){
 
         commentary.AddCommentaryToList();
         playersList.addPlayersToList();
+        starterPrint();
 
         Scanner play = new Scanner(System.in);
 
-        /*while (firstInningScore.getBallCount() <= 30){
+        while (teamOneScore.getBallCount() < 30){
             if(play.nextInt() == 1){
                 currentBall = randomRunGenerator.currentBall();
                 scoreUpdate(currentBall.getRun());
                 print();
             }
-        }*/
+        }
 
-        for(int i=0; i<30; i++){
+        /*for(int i=0; i<30; i++){
                 currentBall = randomRunGenerator.currentBall();
                 scoreUpdate(currentBall.getRun());
                 print();
-        }
+        }*/
 
 
     }
@@ -44,59 +47,95 @@ public class Play {
         if(currentBall.isLegal()){
             switch(run){
                 case 0:
-                    firstInningScore.setWickets(firstInningScore.getWickets()+1);
-                    firstInningScore.setBallCount(firstInningScore.getBallCount()+1);
+                    teamOneScore.setWickets(teamOneScore.getWickets()+1);
+                    teamOneScore.setBallCount(teamOneScore.getBallCount()+1);
+                    playersList.teamOnePlayersList.get(teamOneScore.getWickets()).getIndividualRunsScored();
                     break;
 
                 case 1:
-                    firstInningScore.setTotalRuns(firstInningScore.getTotalRuns()+1);
-                    firstInningScore.setBallCount(firstInningScore.getBallCount()+1);
+                    teamOneScore.setTotalRuns(teamOneScore.getTotalRuns()+1);
+                    teamOneScore.setBallCount(teamOneScore.getBallCount()+1);
+                    playersList.teamOnePlayersList.get(teamOneScore.getWickets()).setIndividualRunsScored(
+                            playersList.teamOnePlayersList.get(teamOneScore.getWickets())
+                                    .getIndividualRunsScored() +1);
                     break;
 
                 case 2:
-                    firstInningScore.setTotalRuns(firstInningScore.getTotalRuns()+2);
-                    firstInningScore.setBallCount(firstInningScore.getBallCount()+1);
+                    teamOneScore.setTotalRuns(teamOneScore.getTotalRuns()+2);
+                    teamOneScore.setBallCount(teamOneScore.getBallCount()+1);
+                    playersList.teamOnePlayersList.get(teamOneScore.getWickets()).setIndividualRunsScored(
+                            playersList.teamOnePlayersList.get(teamOneScore.getWickets())
+                                    .getIndividualRunsScored() +2);
                     break;
 
                 case 3:
-                    firstInningScore.setTotalRuns(firstInningScore.getTotalRuns()+3);
-                    firstInningScore.setBallCount(firstInningScore.getBallCount()+1);
+                    teamOneScore.setTotalRuns(teamOneScore.getTotalRuns()+3);
+                    teamOneScore.setBallCount(teamOneScore.getBallCount()+1);
+                    playersList.teamOnePlayersList.get(teamOneScore.getWickets()).setIndividualRunsScored(
+                            playersList.teamOnePlayersList.get(teamOneScore.getWickets())
+                                    .getIndividualRunsScored() +3);
                     break;
 
                 case 4:
-                    firstInningScore.setTotalRuns(firstInningScore.getTotalRuns()+4);
-                    firstInningScore.setBallCount(firstInningScore.getBallCount()+1);
+                    teamOneScore.setTotalRuns(teamOneScore.getTotalRuns()+4);
+                    teamOneScore.setBallCount(teamOneScore.getBallCount()+1);
+                    playersList.teamOnePlayersList.get(teamOneScore.getWickets()).setIndividualRunsScored(
+                            playersList.teamOnePlayersList.get(teamOneScore.getWickets())
+                                    .getIndividualRunsScored() +4);
                     break;
 
                 case 5:
-                    firstInningScore.setTotalRuns(firstInningScore.getTotalRuns()+5);
-                    firstInningScore.setBallCount(firstInningScore.getBallCount()+1);
+                    teamOneScore.setTotalRuns(teamOneScore.getTotalRuns()+5);
+                    teamOneScore.setBallCount(teamOneScore.getBallCount()+1);
+                    playersList.teamOnePlayersList.get(teamOneScore.getWickets()).setIndividualRunsScored(
+                            playersList.teamOnePlayersList.get(teamOneScore.getWickets())
+                                    .getIndividualRunsScored() +5);
                     break;
 
                 case 6:
-                    firstInningScore.setTotalRuns(firstInningScore.getTotalRuns()+6);
-                    firstInningScore.setBallCount(firstInningScore.getBallCount()+1);
+                    teamOneScore.setTotalRuns(teamOneScore.getTotalRuns()+6);
+                    teamOneScore.setBallCount(teamOneScore.getBallCount()+1);
+                    playersList.teamOnePlayersList.get(teamOneScore.getWickets()).setIndividualRunsScored(
+                            playersList.teamOnePlayersList.get(teamOneScore.getWickets())
+                                    .getIndividualRunsScored() +6);
                     break;
 
             }
         }
         else {
-            firstInningScore.setTotalRuns(firstInningScore.getTotalRuns()+1);
+            teamOneScore.setTotalRuns(teamOneScore.getTotalRuns()+1);
         }
 
     }
 
     private void print(){
-        System.out.println(String.valueOf("Current Ball Run:" + currentBall.getRun()) + " "
-                + String.valueOf(currentBall.isLegal()) + "\n"
+
+        System.out.println("Current Ball Run: " + currentBall.getRun() + " "
                 + commentary.Commentary(currentBall.getRun()) + " "
-                + "Score:" + firstInningScore.getTotalRuns() + " "
-                + "Wickets:" + firstInningScore.getWickets() + " "
-                + "Batsman:" + playersList.teamOnePlayersList.get(firstInningScore.getWickets()).getPlayerName());
+                + "Score:" + teamOneScore.getTotalRuns() + " "
+                + "Wickets:" + teamOneScore.getWickets() + " "
+                + "Batsman:" + playersList.teamOnePlayersList.get(teamOneScore.getWickets()).getPlayerName() + ""
+                + "["
+                + playersList.teamOnePlayersList.get(teamOneScore.getWickets()).getIndividualRunsScored()
+                +"]"
+                + " Overs: " + calculateOvers.calculateOvers(teamOneScore.getBallCount()));
+    }
+
+    private void starterPrint(){
+
+        System.out.println("Score:" + teamOneScore.getTotalRuns() + " "
+                + "Wickets:" + teamOneScore.getWickets() + " "
+                + "Batsman:" + playersList.teamOnePlayersList.get(teamOneScore.getWickets()).getPlayerName() + ""
+                + "["
+                + playersList.teamOnePlayersList.get(teamOneScore.getWickets()).getIndividualRunsScored()
+                +"]"
+                + " Overs: " + calculateOvers.calculateOvers(teamOneScore.getBallCount()));
     }
 
     public void initialize(){
-        firstInningScore = new FirstInningScore(00,0,00,00,00,00);
+        teamOneScore = new TeamOneScore(00,0,00,00,00,0);
     }
+
+
 
 }

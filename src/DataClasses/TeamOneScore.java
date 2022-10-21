@@ -1,6 +1,6 @@
 package DataClasses;
 
-public class FirstInningScore {
+public class TeamOneScore {
     int TotalRuns =0;
     int Wickets =0;
     int Batsman;
@@ -9,7 +9,7 @@ public class FirstInningScore {
     int BallCount = 0;
     float Overs = 0;
 
-    public FirstInningScore(int totalRuns, int wickets, int batsman, int bowler, double runRate, int ballCount) {
+    public TeamOneScore(int totalRuns, int wickets, int batsman, int bowler, double runRate, int ballCount) {
         TotalRuns = totalRuns;
         Wickets = wickets;
         Batsman = batsman;

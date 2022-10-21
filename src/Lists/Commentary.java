@@ -8,6 +8,7 @@ public class Commentary {
     public ArrayList<String> FourCommentary = new ArrayList<>();
     public ArrayList<String> SixCommentary = new ArrayList<>();
     public ArrayList<String> OutCommentary = new ArrayList<>();
+    public ArrayList<String> IllegalCommentary = new ArrayList<>();
 
     Random random = new Random();
 
@@ -30,6 +31,12 @@ public class Commentary {
         FourCommentary.add("One bounce Four");
         FourCommentary.add("Nice Shot");
 
+        IllegalCommentary.add("Opps, That was Wide");
+        IllegalCommentary.add("Illegal Delivery");
+        IllegalCommentary.add("Opps, That was No Ball");
+        IllegalCommentary.add("Damn...Free Run!");
+        IllegalCommentary.add("Wide Ball...!");
+
 
     }
 
@@ -47,6 +54,9 @@ public class Commentary {
 
             case 6:
                 return SixCommentary.get(x);
+
+            case 7:
+                return IllegalCommentary.get(x);
 
         }
         return null;
